@@ -43,10 +43,11 @@
       }
       /* Mobile (9:16) Aspect Ratio Simulation */
       .poster-container {
-        width: 540px;
-        height: 960px;
+        width: min(540px, 100%);
+        max-width: 540px;
         position: relative;
         overflow: hidden;
+        margin: auto;
       }
       /* Wrapper untuk animasi skala */
       #scale-wrapper {
@@ -342,8 +343,10 @@ Update transfers, jerseys, faces, stadiums, dan tim terbaru 2026/2027 (eFootball
         </div>
 
         <!-- WRAPPER UNTUK RESPONSIVE SCALING -->
-        <div id="scale-wrapper" class="w-full flex justify-center relative overflow-hidden">
-          
+        <div
+          id="scale-wrapper"
+          class="w-full flex justify-center relative overflow-hidden"
+        >
           <!-- THE POSTER CONTAINER (9:16 Mobile standard: 540 x 960 px) -->
           <div
             id="poster-card"
@@ -700,32 +703,32 @@ Update transfers, jerseys, faces, stadiums, dan tim terbaru 2026/2027 (eFootball
       function adjustPosterScale() {
         const wrapper = document.getElementById("scale-wrapper");
         const poster = document.getElementById("poster-card");
-        
+
         if (!wrapper || !poster) return;
 
         // Lebar asli poster disesuaikan dengan aspek rasio HP (9:16)
         const originalWidth = 540;
         const originalHeight = 960;
-        
+
         // Ambil lebar kontainer wrapper saat ini
         const availableWidth = wrapper.clientWidth;
-        
+
         // Hitung skala (jika lebar layar lebih kecil dari poster)
         let scale = availableWidth / originalWidth;
-        
+
         // Jangan perbesar poster melebihi ukuran aslinya
         if (scale > 1) scale = 1;
 
         // Terapkan efek scale CSS
         poster.style.transform = `scale(${scale})`;
-        
+
         // Sesuaikan tinggi wrapper agar tidak ada ruang kosong berlebih di bawah
         wrapper.style.height = `${originalHeight * scale}px`;
       }
 
       // Panggil fungsi saat layar di-resize dan saat pertama kali dimuat
       window.addEventListener("resize", adjustPosterScale);
-      
+
       // Menggunakan setTimeout untuk memastikan layout DOM telah di-render sepenuhnya
       setTimeout(adjustPosterScale, 100);
 
@@ -892,9 +895,9 @@ Update transfers, jerseys, faces, stadiums, dan tim terbaru 2026/2027 (eFootball
             // PENTING: Callback onclone menghapus efek scale (CSS transform)
             // saat proses rendering html2canvas, agar gambar unduhan tidak rusak/terpotong
             onclone: (clonedDoc) => {
-              const clonedPoster = clonedDoc.getElementById('poster-card');
-              clonedPoster.style.transform = 'none';
-            }
+              const clonedPoster = clonedDoc.getElementById("poster-card");
+              clonedPoster.style.transform = "none";
+            },
           }).then((canvas) => {
             // Kembalikan efek glow
             glow.forEach((e) => {

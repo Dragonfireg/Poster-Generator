@@ -41,10 +41,10 @@
         box-shadow: inset 0 0 15px rgba(239, 68, 68, 0.2),
           0 0 15px rgba(239, 68, 68, 0.2);
       }
-      /* A4 Aspect Ratio Simulation */
+      /* Mobile (9:16) Aspect Ratio Simulation */
       .poster-container {
-        width: 595px;
-        height: 842px;
+        width: 540px;
+        height: 960px;
         position: relative;
         overflow: hidden;
       }
@@ -307,7 +307,7 @@ Update transfers, jerseys, faces, stadiums, dan tim terbaru 2026/2027 (eFootball
           class="w-full py-3 px-4 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold rounded-lg border border-slate-700 flex items-center justify-center space-x-2 transition cursor-pointer"
         >
           <i data-lucide="printer" class="w-5 h-5"></i>
-          <span>Cetak Poster (A4)</span>
+          <span>Cetak Poster</span>
         </button>
         <p class="text-[10px] text-center text-slate-500 mt-2">
           Gunakan "Save as PDF" di menu cetak browser Anda untuk menyimpan
@@ -344,7 +344,7 @@ Update transfers, jerseys, faces, stadiums, dan tim terbaru 2026/2027 (eFootball
         <!-- WRAPPER UNTUK RESPONSIVE SCALING -->
         <div id="scale-wrapper" class="w-full flex justify-center relative overflow-hidden">
           
-          <!-- THE POSTER CONTAINER (A4 standard: 595 x 842 px) -->
+          <!-- THE POSTER CONTAINER (9:16 Mobile standard: 540 x 960 px) -->
           <div
             id="poster-card"
             class="poster-container bg-slate-950 border-4 border-slate-800 text-white flex flex-col justify-between p-8 origin-top print-full-page select-none"
@@ -703,9 +703,9 @@ Update transfers, jerseys, faces, stadiums, dan tim terbaru 2026/2027 (eFootball
         
         if (!wrapper || !poster) return;
 
-        // Lebar asli poster adalah 595px
-        const originalWidth = 595;
-        const originalHeight = 842;
+        // Lebar asli poster disesuaikan dengan aspek rasio HP (9:16)
+        const originalWidth = 540;
+        const originalHeight = 960;
         
         // Ambil lebar kontainer wrapper saat ini
         const availableWidth = wrapper.clientWidth;
